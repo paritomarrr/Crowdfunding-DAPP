@@ -13,7 +13,7 @@ import "./NFT.sol";
 
 contract Project {
     NFT newNFT;
-    string tokenURI_ = "https://gateway.pinata.cloud/ipfs/QmPXHGrtgyzr2WT8N2UminWnJRoVCCRUrPUiL93u5HYPXs";
+    string tokenURI_ = "https://gateway.pinata.cloud/ipfs/QmSFNiPqgT8zUW8hiNmgpieEWbZ2w3EvzhUDzqxeNpX71n";
     // Project state
     enum State {
         Fundraising,
