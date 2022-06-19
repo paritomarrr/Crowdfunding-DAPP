@@ -4,7 +4,17 @@
     "workspaces": [
         "packages/*"
     ],
+    "version": "1.0.0",
     "devDependencies": {
-        "lerna": "^5.1.2"
+        "lerna": "^5.1.4"
+    },
+    "scripts": {
+        "start": "lerna run start",
+        "test": "lerna run test",
+        "new-version": "lerna version --conventional-commits --yes",
+        "diff": "lerna diff"
+    },
+    "dependencies": {
+        "commitizen": "^4.2.4"
     }
 }
