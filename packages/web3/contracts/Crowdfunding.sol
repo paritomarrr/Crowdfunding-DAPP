@@ -1,7 +1,5 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
-
-import "hardhat/console.sol";
 import './Project.sol';
 
 contract Crowdfunding{

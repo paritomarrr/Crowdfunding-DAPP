@@ -1,8 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-import "hardhat/console.sol";
-
 // [X] Anyone can contribute
 // [X] End project if targeted contribution amount reached
 // [X] Expire project if raised amount not fullfill between deadline
