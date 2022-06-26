@@ -27,7 +27,7 @@ describe("Crowdfunding", () => {
     it("Start a project", async function () {
 
       const minimumContribution=etherToWei('1');
-      const deadline=dateToUNIX('2022-04-25');
+      const deadline=dateToUNIX('2022-09-25');
       const targetContribution=etherToWei('100');
       const projectTitle='Testing title';
       const projectDesc='Testing description';
@@ -56,7 +56,7 @@ describe("Crowdfunding", () => {
     it("Get data", async function () {
 
       const minimumContribution=etherToWei('1');
-      const deadline=dateToUNIX('2022-04-25');
+      const deadline=dateToUNIX('2022-09-25');
       const targetContribution=etherToWei('100');
       const projectTitle='Testing title';
       const projectDesc='Testing description';
