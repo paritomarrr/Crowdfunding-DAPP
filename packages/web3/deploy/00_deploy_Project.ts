@@ -7,10 +7,6 @@ const deadline = (new Date(new Date().getTime()+(5*24*60*60*1000))).valueOf();
 const targetContribution = ethers.utils.parseUnits("10", "ether");
 const projectTitle = "Testing project";
 const projectDes = "Testing project description"
-  
-//       const Project = await ethers.getContractFactory("Project");
-//       projectContract = await Project.deploy(creator,minimumContribution,deadline,targetContribution,projectTitle,projectDes);
-
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { getNamedAccounts, deployments } = hre;
