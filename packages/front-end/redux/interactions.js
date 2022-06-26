@@ -1,10 +1,10 @@
 import Web3 from "web3";
 import * as actions from "./actions";
-import CrowdFunding from '../artifacts/contracts/Crowdfunding.sol/Crowdfunding.json'
-import Project from '../artifacts/contracts/Project.sol/Project.json'
+import CrowdFunding from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json' 
+import Project from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Project.sol/Project.json' 
 import { groupContributionByProject, groupContributors, projectDataFormatter, withdrawRequestDataFormatter} from "../helper/helper";
 
-const crowdFundingContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const crowdFundingContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";  //TODO
 
 //Load web3 
 export const loadWeb3 = async (dispatch) => {

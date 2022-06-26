@@ -1,6 +1,8 @@
-require("@nomiclabs/hardhat-ethers");
-require("@nomiclabs/hardhat-waffle");
-// const { ACCOUNT_PRIVATE_KEY,ALCHEMY_KEY } = process.env;
+import { extendEnvironment, task } from "hardhat/config";
+import "@nomiclabs/hardhat-waffle";
+import "@nomiclabs/hardhat-ethers";
+import "hardhat-deploy";
+import 'dotenv/config';
 
 module.exports = {
   solidity: "0.8.4",
@@ -8,8 +10,11 @@ module.exports = {
     artifacts: "./client/artifacts",
   },
   networks: {
-    hardhat: {
-      chainId: 31337
-    },
+    buildbear: {
+      url: process.env.BBRPC
+    }
+  },
+  namedAccounts: {
+    deployer: 0,
   },
 };
