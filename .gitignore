@@ -1,2 +1,3 @@
 node_modules
 packages/web3/cache/*
+packages/web3/.env
