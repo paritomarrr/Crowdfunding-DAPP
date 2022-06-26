@@ -1,5 +1,5 @@
 {
-  "name": "crowdfunding",
+  "name": "@crowdfunding-dapp/web3-contracts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
