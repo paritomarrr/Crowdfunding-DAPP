@@ -11,7 +11,7 @@ module.exports = {
   },
   networks: {
     buildbear: {
-      url: process.env.BBRPC
+      url: 'https://backend.buildbear.io/node/kind-cori-260b3c'
     }
   },
   namedAccounts: {

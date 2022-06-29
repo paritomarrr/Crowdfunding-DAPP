@@ -4,9 +4,6 @@ import { ethers } from "hardhat";
 import { fetchDeploymentDetails } from "../utils/fetchDeploymentDetails";
 import fs from "fs";
 
-const constants = '../constants/constants.json';
-const file = require(constants);
-    
 const minimumContribution = ethers.utils.parseUnits("1", "wei");
 const deadline = (new Date(new Date().getTime()+(5*24*60*60*1000))).valueOf();
 const targetContribution = ethers.utils.parseUnits("10", "ether");
@@ -22,15 +19,18 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       args: [deployer,minimumContribution,deadline,targetContribution,projectTitle,projectDes],
       log: true,
     });
-    file.key = await hre.getChainId();
-    
-    fs.writeFileSync(constants, JSON.stringify(file), function writeJSON(err) {
-      if (err) return console.log(err);
-      console.log(JSON.stringify(file));
-      console.log('writing to ' + fileName);
-});
-
-    // CONSTANTS[await hre.getChainId()] = await fetchDeploymentDetails(deployTx);
+    const chainid=await hre.getChainId();
+    const deploymentDetails= await fetchDeploymentDetails(deployTx);
+    // read file and make object
+    let content = (fs.readFileSync(require.resolve('../constants/constants.json'), 'utf8'));
+    // edit or add property
+    content = JSON.parse(content);
+    if(content[chainid]== null || undefined) {
+        content[chainid] = {};
+    }
+    content[chainid][deploymentDetails.nameOfContract] = deploymentDetails;
+    //write file
+    fs.writeFileSync(require.resolve('../constants/constants.json'), JSON.stringify(content));
 };
 
 func.tags = ["Project"];

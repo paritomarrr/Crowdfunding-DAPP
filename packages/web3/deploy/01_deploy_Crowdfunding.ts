@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { fetchDeploymentDetails } from "../utils/fetchDeploymentDetails";
-import { CONSTANTS } from "../constants/constants.json";
+import fs from "fs";
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     const { getNamedAccounts, deployments } = hre;
@@ -11,7 +11,18 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
       from: deployer,
       log: true,
     });
-    CONSTANTS[await hre.getChainId()] = await fetchDeploymentDetails(deployTx);
+    const chainid=await hre.getChainId();
+    const deploymentDetails= await fetchDeploymentDetails(deployTx);
+    // read file and make object
+    let content = (fs.readFileSync(require.resolve('../constants/constants.json'), 'utf8'));
+    // edit or add property
+    content = JSON.parse(content);
+    if(content[chainid]== null || undefined) {
+      content[chainid] = {};
+    }
+    content[chainid][deploymentDetails.nameOfContract] = deploymentDetails;
+    //write file
+    fs.writeFileSync(require.resolve('../constants/constants.json'), JSON.stringify(content));
 };
 
 func.tags = ["Crowdfunding"];
