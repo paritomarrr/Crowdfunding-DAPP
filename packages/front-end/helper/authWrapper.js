@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import Navbar from "../components/Navbar";
+import Navbar from '../components/Navbar'
 
 export const getLocalStorageData = (name) =>{
   var value;
