@@ -1,10 +1,12 @@
 import Web3 from "web3";
 import * as actions from "./actions";
-import CrowdFunding from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json' 
-import Project from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Project.sol/Project.json' 
+import * as constants from '@crowdfunding-dapp/web3-contracts/constants/constants.json'
+// import CrowdFunding from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json' 
+// import Project from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Project.sol/Project.json' 
 import { groupContributionByProject, groupContributors, projectDataFormatter, withdrawRequestDataFormatter} from "../helper/helper";
 
-const crowdFundingContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";  //TODO
+let account;
+let network = '31337';
 
 //Load web3 
 export const loadWeb3 = async (dispatch) => {
@@ -15,20 +17,19 @@ export const loadWeb3 = async (dispatch) => {
 
 // Load connected wallet
 export const loadAccount = async (web3, dispatch) => {
-  const account = await web3.eth.getAccounts();
-  const network = await web3.eth.net.getId();
+  account = await web3.eth.getAccounts();
+  network = await web3.eth.net.getId();
 
-//   if (network !== Number(process.env.REACT_APP_NETWORK_ID)) {
-//     alert("Contract not deployed in this network !");
-//   }
   dispatch(actions.walletAddressLoaded(account[0]));
   localStorage.setItem("ADDRESS",account[0])
   return account;
 };
 
+const crowdFundingDetails = constants[network]['Crowdfunding']
+console.log(crowdFundingDetails['contractAddress']);
 //Connect with crowd funding contract
 export const loadCrowdFundingContract = async(web3,dispatch) =>{
-  const crowdFunding = new web3.eth.Contract(CrowdFunding.abi,crowdFundingContractAddress);
+  const crowdFunding = new web3.eth.Contract(crowdFundingDetails['abi'],crowdFundingDetails['contractAddress']);
   dispatch(actions.crowdFundingContractLoaded(crowdFunding));
   return crowdFunding;
 }
