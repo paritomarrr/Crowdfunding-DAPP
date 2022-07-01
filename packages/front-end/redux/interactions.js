@@ -6,7 +6,7 @@ import * as constants from '@crowdfunding-dapp/web3-contracts/constants/constant
 import { groupContributionByProject, groupContributors, projectDataFormatter, withdrawRequestDataFormatter} from "../helper/helper";
 
 let account;
-let network = '31337';
+let network=31337;
 
 //Load web3 
 export const loadWeb3 = async (dispatch) => {
@@ -18,15 +18,21 @@ export const loadWeb3 = async (dispatch) => {
 // Load connected wallet
 export const loadAccount = async (web3, dispatch) => {
   account = await web3.eth.getAccounts();
+  // console.log(account[0], 'acc')
   network = await web3.eth.net.getId();
+  console.log(network, 'network')
+
 
   dispatch(actions.walletAddressLoaded(account[0]));
   localStorage.setItem("ADDRESS",account[0])
+// console.log(dispatch(actions.walletAddressLoaded(account[0])))
+
   return account;
 };
-
+console.log('kjhg')
 const crowdFundingDetails = constants[network]['Crowdfunding']
-console.log(crowdFundingDetails['contractAddress']);
+console.log(crowdFundingDetails)
+console.log(constants[network]['Crowdfunding'], 'abi');
 //Connect with crowd funding contract
 export const loadCrowdFundingContract = async(web3,dispatch) =>{
   const crowdFunding = new web3.eth.Contract(crowdFundingDetails['abi'],crowdFundingDetails['contractAddress']);
@@ -52,9 +58,6 @@ export const startFundRaising = async(web3,CrowdFundingContract,data,onSuccess,o
 
     onSuccess()
   })
-  .on('error', function(error){ 
-    onError(error.message)
-  })
 }
 
 // 1 - Get all funding project address
@@ -62,21 +65,24 @@ export const startFundRaising = async(web3,CrowdFundingContract,data,onSuccess,o
 // 3 - Get project details 
 export const getAllFunding = async(CrowdFundingContract,web3,dispatch) =>{
    
-  const fundingProjectList = await CrowdFundingContract.methods.returnAllProjects().call()
-  
-   const projectContracts = [];
-   const projects = [];
+  console.log('pari');
+  console.log(await CrowdFundingContract.methods.returnAllProjects(), 'call')
+//   const fundingProjectList = await CrowdFundingContract.methods.returnAllProjects().call()
+//   console.log(fundingProjectList, 'fundinglist')
 
-   await Promise.all(fundingProjectList.map(async (data)=>{
-    var projectConnector = new web3.eth.Contract(Project.abi,data);
-    const details = await projectConnector.methods.getProjectDetails().call()
-    projectContracts.push(projectConnector);
-    const formattedProjectData = projectDataFormatter(details,data)
-    projects.push(formattedProjectData)
-   }))
+  //  const projectContracts = [];
+  //  const projects = [];
 
-   dispatch(actions.projectContractsLoaded(projectContracts));
-   dispatch(actions.projectsLoaded(projects));
+  //  await Promise.all(fundingProjectList.map(async (data)=>{
+  //   var projectConnector = new web3.eth.Contract(Project.abi,data);
+  //   const details = await projectConnector.methods.getProjectDetails().call()
+  //   projectContracts.push(projectConnector);
+  //   const formattedProjectData = projectDataFormatter(details,data)
+  //   projects.push(formattedProjectData)
+  //  }))
+
+  //  dispatch(actions.projectContractsLoaded(projectContracts));
+  //  dispatch(actions.projectsLoaded(projects));
 
 }
 

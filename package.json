@@ -9,5 +9,8 @@
     },
     "dependencies": {
         "web3modal": "^1.9.8"
+    },
+    "scripts": {
+        "start": "lerna run start"
     }
 }
