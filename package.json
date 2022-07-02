@@ -1,6 +1,5 @@
 {
-    "private": true,
-    "name": "crowdfunding-app",
+    "name": "crowdfunding",
     "workspaces": [
         "packages/*"
     ],
