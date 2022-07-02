@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import * as actions from "./actions";
-import * as constants from '@crowdfunding-dapp/web3-contracts/constants/constants.json'
+// import * as constants from '@crowdfunding-dapp/web3-contracts/constants/constants.json'
+import * as constants from '../../web3/constants/constants.json';
 // import CrowdFunding from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json' 
 // import Project from '@crowdfunding-dapp/web3-contracts/artifacts/contracts/Project.sol/Project.json' 
 import { groupContributionByProject, groupContributors, projectDataFormatter, withdrawRequestDataFormatter} from "../helper/helper";
