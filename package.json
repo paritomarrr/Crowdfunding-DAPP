@@ -7,10 +7,11 @@
     "devDependencies": {
         "lerna": "^5.1.2"
     },
-    "dependencies": {
-        "web3modal": "^1.9.8"
-    },
     "scripts": {
-        "start": "lerna run start"
+        "start": "lerna run start",
+        "test": "lerna run test",
+        "new-version": "lerna version --conventional-commits --yes",
+        "diff": "lerna diff"
     }
+
 }
