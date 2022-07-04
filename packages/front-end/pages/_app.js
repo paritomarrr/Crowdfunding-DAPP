@@ -40,8 +40,8 @@ function MyApp({ Component, pageProps }) {
   
   return (
     <>
-      <ToastContainer/>
-      <Component {...pageProps} />
+      {/* <ToastContainer/>
+      <Component {...pageProps} /> */}
     </>
   )
 }
